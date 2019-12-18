@@ -3,5 +3,6 @@ class EventsController < ApplicationController
   end
 
   def show
+    authorize @event
   end
 end
