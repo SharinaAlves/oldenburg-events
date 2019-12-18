@@ -1,5 +1,12 @@
 <h1>Events#index</h1>
 
 <% @events.each do |event| %>
-  <div><%= event.name %> - <%= event.time %></div>
+  <%= link_to event_path(event) do %>
+    <div>
+      <strong><%= event.name %></strong><br>
+      <%= event.location %><br>
+      <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
+      <i class="fas fa-map-marker-alt"></i> Entfernung
+    </div>
+  <% end %>
 <% end %>
