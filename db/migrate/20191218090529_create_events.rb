@@ -8,7 +8,7 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :image
       t.string :link
-      t.category :reference
+      t.references :category, foreign_key: true
 
       t.timestamps
     end
