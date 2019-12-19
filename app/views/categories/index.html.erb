@@ -1,9 +1,23 @@
 <h1>Categories#index</h1>
+<div>
+  <%= form_tag events_path, method: :get, class: "search-bar" do %>
+    <%= text_field_tag :query,
+    params[:query],
+    class: "input-field"
+    #,placeholder: ""
+    %>
+    <%= button_tag(type: "submit", class: "btn btn-search") do %>
+      <i class="fas fa-search"></i>
+    <% end %>
+  <% end %>
+</div>
 
 <% @categories.each do |category| %>
   <%= link_to events_path(category) do %>
-    <div class="category">
+  <% if category.image != nil %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path category.image %>)">
       <%= category.name %>
     </div>
+  <% end %>
   <% end %>
 <% end %>

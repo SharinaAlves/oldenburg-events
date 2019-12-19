@@ -1,0 +1,9 @@
+.search-bar {
+  display: grid;
+  grid-template-columns: 1fr 30px;
+  margin: 0 5px 5px 5px;
+}
+
+.input-field {
+  border-radius: 3px;
+}
