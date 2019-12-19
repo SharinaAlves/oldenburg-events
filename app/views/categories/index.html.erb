@@ -1,0 +1,9 @@
+<h1>Categories#index</h1>
+
+<% @categories.each do |category| %>
+  <%= link_to events_path(category) do %>
+    <div class="category">
+      <%= category.name %>
+    </div>
+  <% end %>
+<% end %>
