@@ -2,11 +2,16 @@
 
 <% @events.each do |event| %>
   <%= link_to event_path(event) do %>
-    <div>
-      <strong><%= event.name %></strong><br>
-      <%= event.location %><br>
-      <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
-      <i class="fas fa-map-marker-alt"></i> Entfernung
+    <div class="card-event">
+      <div>
+        <strong><%= event.name %></strong><br>
+        <%= event.location %><br>
+        <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
+        <i class="fas fa-map-marker-alt"></i> <%#= distance_between(event.lat, event.lon, current_location[0], current_location[1]) %>
+      </div>
+      <div>
+        <%#= image_tag(event.image) %>
+      </div>
     </div>
   <% end %>
 <% end %>
