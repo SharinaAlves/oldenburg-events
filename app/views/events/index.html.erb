@@ -10,7 +10,8 @@
         <i class="fas fa-map-marker-alt"></i> <%#= distance_between(event.lat, event.lon, current_location[0], current_location[1]) %>
       </div>
       <div>
-        <%#= image_tag(event.image) %>
+        <!-- problem with fb images. URL can't be used over a longer time -->
+        <%= image_tag(event.image) if event.image != nil %>
       </div>
     </div>
   <% end %>

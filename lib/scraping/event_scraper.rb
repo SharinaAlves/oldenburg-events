@@ -1,11 +1,13 @@
 require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
+require 'watir'
 
 class EventScraper
 
   def initialize
     @agent = Mechanize.new
+    @browser = Watir::Browser.new
   end
 
   #def scrape_event_names
@@ -54,12 +56,47 @@ class EventScraper
             name: event_page.at('#ev-name').text.strip,
             date: event_page.at('.ev-day').text.strip,
             time: event_page.at('.ev-time').text.strip,
-            location: event_page.at('.address').text.strip,
+            address: event_page.at('.address').text.strip,
+            location: event_page.at('.pname').text.strip,
             description: event_page.at('.description').text.strip,
-            image: event_page.at('item-cover img').attr('src')
+            image: event_page.at('.item-cover img').attr('src')
           )
         end
       end
+    end
+  end
+
+  def scrape_facebook
+    club_url = "https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal"
+
+    @browser.goto(club_url)
+    @browser.div(:class, '_4dmk').wait_until_present
+    #@browser.driver.executeScript("window.scrollBy(0,200)")
+    html_file_club = @browser.html
+    html_doc_club = Nokogiri::HTML(html_file_club)
+    club_page = Mechanize::Page.new(nil, {'content-type'=>'text/html'}, html_file_club, nil, @agent)
+
+    html_doc_club.search('._4dmk a').each do |element|
+      event_link = club_page.link_with(text: /#{element.text.strip}/)
+      event_link_mod = "https://www.facebook.com#{event_link.href}"
+      html_file_event = open(event_link_mod).read
+      html_doc_event = Nokogiri::HTML(html_file_event)
+
+      #event_link.uri.merge(event_link_mod)
+      #event_page = event_link.click
+byebug
+        if Event.where(name: element.text.strip) == []
+          Event.create(
+            category_id: 2,
+            name: html_doc_event.search('#seo_h1_tag').text.strip,
+            # date: event_page.at('.ev-day').text.strip,
+            # time: event_page.at('.ev-time').text.strip,
+            # address: event_page.at('.address').text.strip,
+            location: html_doc_event.search('._b9- a').text.strip,
+            description: html_doc_event.search('._63eu').text.strip,
+            image: html_doc_event.search('._3ojl img').attr('src').value
+          )
+        end
     end
   end
 end

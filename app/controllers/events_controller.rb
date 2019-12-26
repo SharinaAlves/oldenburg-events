@@ -5,6 +5,7 @@ class EventsController < ApplicationController
 
   def index
     #EventScraper.new.scrape_partys
+    EventScraper.new.scrape_facebook
     @events = policy_scope(Event)
   end
 
