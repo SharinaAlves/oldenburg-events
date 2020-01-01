@@ -1,3 +1,4 @@
 import 'bootstrap';
 
-console.log('Hello World from Webpacker')
+import { getUserLocation } from '../components/get_user_location';
+getUserLocation();
