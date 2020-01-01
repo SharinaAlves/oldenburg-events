@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2019_12_20_124635) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "lat"
-    t.float "lon"
+    t.float "latitude"
+    t.float "longitude"
     t.string "address"
     t.index ["category_id"], name: "index_events_on_category_id"
   end

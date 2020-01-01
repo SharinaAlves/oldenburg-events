@@ -4,8 +4,8 @@ class EventsController < ApplicationController
   require 'scraping/event_scraper'
 
   def index
-    #EventScraper.new.scrape_partys
-    EventScraper.new.scrape_facebook
+    EventScraper.new.scrape_partys
+    #EventScraper.new.scrape_facebook
     @events = policy_scope(Event)
   end
 

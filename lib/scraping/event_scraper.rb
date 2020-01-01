@@ -7,7 +7,7 @@ class EventScraper
 
   def initialize
     @agent = Mechanize.new
-    @browser = Watir::Browser.new
+    #@browser = Watir::Browser.new
   end
 
   #def scrape_event_names
