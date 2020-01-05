@@ -1,5 +1,7 @@
 <h1>Events#show</h1>
-
+<div class="event-img">
+  <%= image_tag(@event.image) if @event.image != nil %>
+</div>
 <h1><%= @event.name %></h1>
 <%= @event.date.strftime('%d.%m.%Y') %> <i class="far fa-clock"></i> <%= @event.time.strftime('%H:%M') %>
 <%= @event.location %>
