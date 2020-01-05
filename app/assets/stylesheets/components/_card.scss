@@ -1,3 +1,11 @@
+a {
+    color: black;
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
+  }
+
 .card-category {
   background-size: cover;
   background-position: center;
@@ -18,17 +26,19 @@
 }
 
 .card-event {
+  padding: 5px 20px;
   height: 100px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .card-info {
+    width: 70%;
   }
   .card-img {
-    width: 50px;
-  }
-  &:hover {
-    text-decoration: none;
+    width: 30%;
+    img {
+      width: 100px;
+    }
   }
 }

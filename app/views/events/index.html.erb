@@ -1,16 +1,18 @@
 <h1>Events#index</h1>
-<button id="location">Location</button>
+<h5 id="location"></h5>
 
 <% @events.each do |event| %>
-  <%= link_to event_path(event) do %>
+  <%= link_to event_path(event), class: 'event-card' do %>
     <div class="card-event">
-      <div>
+      <div class="card-info">
         <strong><%= event.name %></strong><br>
         <%= event.location %><br>
         <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
-        <i class="fas fa-map-marker-alt"></i> <%= (Geocoder::Calculations.distance_between([event.latitude, event.longitude], [@latitude, @longitude])*100).round / 100.0 %>
+        <i class="fas fa-map-marker-alt"></i> <%= @distance %>
+
+        <%#= (Geocoder::Calculations.distance_between([event.latitude, event.longitude], [@latitude, @longitude])*100).round / 100.0 %>
       </div>
-      <div>
+      <div class="card-img">
         <!-- problem with fb images. URL can't be used over a longer time -->
         <%= image_tag(event.image) if event.image != nil %>
       </div>
