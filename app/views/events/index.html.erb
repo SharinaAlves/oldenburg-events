@@ -8,6 +8,7 @@
         <strong><%= event.name %></strong><br>
         <%= event.location %><br>
         <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
+
         <i class="fas fa-map-marker-alt ml-2"></i> <%#= @distance %>
 
         <%#= (Geocoder::Calculations.distance_between([event.latitude, event.longitude], [@latitude, @longitude])*100).round / 100.0 %>
