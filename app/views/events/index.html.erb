@@ -1,6 +1,9 @@
 <h1>Events#index</h1>
 <h5 id="location"></h5>
 
+<% if params[:format] != "1" %>
+  <% @events = @events.where(category_id: params[:format]) %>
+<% end %>
 <% @events.each do |event| %>
   <%= link_to event_path(event), class: 'event-card' do %>
     <div class="card-event border-bottom">
@@ -8,7 +11,6 @@
         <strong><%= event.name %></strong><br>
         <%= event.location %><br>
         <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
-
         <i class="fas fa-map-marker-alt ml-2"></i> <%#= @distance %>
 
         <%#= (Geocoder::Calculations.distance_between([event.latitude, event.longitude], [@latitude, @longitude])*100).round / 100.0 %>

@@ -4,6 +4,7 @@ Category.delete_all
 
 puts "create"
 
+Category.create(name: "Alle Veranstaltungen", image: "category-img/allevents.jpeg")
 Category.create(name: "Nachtleben", image: "category-img/party.jpeg")
 Category.create(name: "Filme", image: "category-img/cinema.jpeg")
 Category.create(name: "Märkte", image: "category-img/market.jpeg")
