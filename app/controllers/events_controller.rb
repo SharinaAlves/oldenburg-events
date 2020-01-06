@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     #EventScraper.new.scrape_facebook
     save_user_location
     @events = policy_scope(Event)
-    @events.each { |event| get_distance(event) }
+    #@events.each { |event| get_distance(event) }
   end
 
   def show
