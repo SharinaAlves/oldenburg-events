@@ -30,6 +30,7 @@ module OldenburgEvents
     # Don't generate system test files.
     # config.autoload_paths += %W(#{config.root}/lib)
 
+    config.active_job.queue_adapter = :sidekiq
     config.generators.system_tests = nil
   end
 end

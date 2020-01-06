@@ -4,14 +4,16 @@ class EventsController < ApplicationController
   require 'scraping/event_scraper'
 
   def index
-    #EventScraper.new.scrape_partys
-    #EventScraper.new.scrape_facebook
     save_user_location
     @events = policy_scope(Event)
     #@events.each { |event| get_distance(event) }
   end
 
   def show
+  end
+
+  def scrape
+    ScrapeJob.set(wait_until: Date.tomorrow.noon).perform_later
   end
 
   private
