@@ -7,7 +7,7 @@ class EventScraper
 
   def initialize
     @agent = Mechanize.new
-    #@browser = Watir::Browser.new
+    @browser = Watir::Browser.new
   end
 
   #def scrape_event_names
@@ -71,7 +71,10 @@ class EventScraper
 
     @browser.goto(club_url)
     @browser.div(:class, '_4dmk').wait_until_present
-    #@browser.driver.executeScript("window.scrollBy(0,200)")
+    @browser.execute_script("
+      const no_upcoming_events_card = document.getElementById('no_upcoming_events_card');
+      no_upcoming_events_card.scrollIntoView();
+    ")
     html_file_club = @browser.html
     html_doc_club = Nokogiri::HTML(html_file_club)
     club_page = Mechanize::Page.new(nil, {'content-type'=>'text/html'}, html_file_club, nil, @agent)
@@ -79,19 +82,22 @@ class EventScraper
     html_doc_club.search('._4dmk a').each do |element|
       event_link = club_page.link_with(text: /#{element.text.strip}/)
       event_link_mod = "https://www.facebook.com#{event_link.href}"
-      html_file_event = open(event_link_mod).read
+
+      @browser.goto(event_link_mod)
+      @browser.div(:class, '_4dpf').wait_until_present
+      html_file_event = @browser.html
       html_doc_event = Nokogiri::HTML(html_file_event)
 
       #event_link.uri.merge(event_link_mod)
       #event_page = event_link.click
-byebug
+
         if Event.where(name: element.text.strip) == []
-          Event.create(
+          event = Event.create(
             category_id: 2,
             name: html_doc_event.search('#seo_h1_tag').text.strip,
-            # date: event_page.at('.ev-day').text.strip,
-            # time: event_page.at('.ev-time').text.strip,
-            # address: event_page.at('.address').text.strip,
+            date: html_doc_event.search('._2ycp').attr('content').value,
+            time: html_doc_event.search('._2ycp').attr('content').value,
+            address: html_doc_event.search('._xkh div._5xhp')[1].text.strip,
             location: html_doc_event.search('._b9- a').text.strip,
             description: html_doc_event.search('._63eu').text.strip,
             image: html_doc_event.search('._3ojl img').attr('src').value

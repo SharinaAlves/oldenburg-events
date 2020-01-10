@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def index
     save_user_location
     @events = policy_scope(Event)
+    EventScraper.new.scrape_facebook
     #@events.each { |event| get_distance(event) }
   end
 
