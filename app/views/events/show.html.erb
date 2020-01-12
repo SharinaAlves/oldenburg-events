@@ -6,3 +6,17 @@
 <%= @event.location %>
 <br><br>
 <%= @event.description %>
+<br>
+<% if request.env['HTTP_USER_AGENT'].downcase.match(/android/) %>
+  <%= link_to "http://maps.apple.com/?q=#{@event.address}" do %>
+      <i class="fas fa-map-marked-alt"></i>
+  <% end %>
+<% elsif request.env['HTTP_USER_AGENT'].downcase.match(/iphone/) %>
+  <%= link_to "comgooglemaps://?q=#{@event.address}" do %>
+    <i class="fas fa-map-marked-alt"></i>
+  <% end %>
+<% else %>
+  <%= link_to "http://maps.apple.com/?q=#{@event.address}", target: :_blank do %>
+      <i class="fas fa-map-marked-alt"></i>
+  <% end %>
+<% end %>
