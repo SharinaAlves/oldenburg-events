@@ -66,9 +66,7 @@ class EventScraper
     end
   end
 
-  def scrape_facebook
-    club_url = "https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal"
-
+  def scrape_facebook(club_url)
     @browser.goto(club_url)
     @browser.div(:class, '_4dmk').wait_until_present
     @browser.execute_script("
@@ -88,11 +86,9 @@ class EventScraper
       html_file_event = @browser.html
       html_doc_event = Nokogiri::HTML(html_file_event)
 
-      #event_link.uri.merge(event_link_mod)
-      #event_page = event_link.click
-
-        if Event.where(name: element.text.strip) == []
-          event = Event.create(
+        if Event.where(name: html_doc_event.search('#seo_h1_tag').text.strip)
+          .where(date: html_doc_event.search('._2ycp').attr('content').value) == []
+          Event.create(
             category_id: 2,
             name: html_doc_event.search('#seo_h1_tag').text.strip,
             date: html_doc_event.search('._2ycp').attr('content').value,
