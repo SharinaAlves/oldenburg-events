@@ -3,6 +3,7 @@
 </div>
 <h1><%= @event.name %></h1>
 <%= @event.date.strftime('%d.%m.%Y') %> <i class="far fa-clock"></i> <%= @event.time.strftime('%H:%M') %>
+<br>
 <%= @event.location %>
 <br><br>
 <%= @event.description %>
