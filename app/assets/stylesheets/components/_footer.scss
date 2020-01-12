@@ -4,11 +4,15 @@
   width: 100%;
   display: grid;
   grid-auto-flow: column;
-  grid-template-column: repeat(4, 1fr);
+  grid-template-column: repeat(5, 1fr);
   background: white;
   flex-grow: 0;
   .active {
     background-color: lightgrey;
+  }
+  .fas {
+  font-size: 2em;
+  color: white;
   }
 }
 
@@ -21,9 +25,4 @@
 
 .footer-link {
   margin: 10px auto;
-}
-
-.fas {
-  font-size: 2em;
-  color: white;
 }

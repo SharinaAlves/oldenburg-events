@@ -26,8 +26,8 @@ a {
 }
 
 .card-event {
-  padding: 5px 20px;
-  height: 100px;
+  padding: 5px 5px;
+  height: 110px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -38,8 +38,10 @@ a {
   }
   .card-img {
     width: 30%;
+    object-fit: cover;
     img {
       width: 100px;
+      height: 60px;
     }
   }
 }

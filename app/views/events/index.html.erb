@@ -1,4 +1,5 @@
-<div class="container">
+
+<div class="index-container">
   <h1><%= Category.find(params[:format]).name %></h1>
   <h5 id="location"></h5>
 
@@ -9,7 +10,7 @@
     <%= link_to event_path(event), class: 'event-card' do %>
       <div class="card-event border-bottom">
         <div class="card-info">
-          <strong><%= event.name %></strong><br>
+          <strong><%= truncate(event.name, length: 45) %></strong><br>
           <%= event.location %><br>
           <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') %>
           <i class="fas fa-map-marker-alt ml-2"></i> <%= @distance %>
