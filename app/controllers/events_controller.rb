@@ -6,8 +6,8 @@ class EventsController < ApplicationController
   def index
     save_user_location
     @events = policy_scope(Event)
-    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/molkereiklub/events/?ref=page_internal")
-    #@events.each { |event| get_distance(event) }
+    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/molkereiklub/events/?ref=page_internal")
+    @events.each { |event| get_distance(event) if event.latitude != nil }
   end
 
   def show
@@ -33,12 +33,9 @@ class EventsController < ApplicationController
   end
 
   def get_distance(event)
-    url = "https://maps.googleapis.com/maps/api/directions/json?
-        origin=#{@latitude},#{@longitude}
-        &destination=#{event.latitude},#{event.longitude}
-        &key=#{ENV['GOOGLE_API_SERVER_KEY']}"
+    url = "https://maps.googleapis.com/maps/api/directions/json?origin=#{@latitude},#{@longitude}&destination=#{event.latitude},#{event.longitude}&key=#{ENV['GOOGLE_API_KEY_DIRECTIONS']}"
     http_call = open(url).read
     response = JSON.parse(http_call, {symbolize_name: true})
-    #@distance = response[:routes][:distance][:text]
+    @distance = response["routes"][0]["legs"][0]["distance"]["text"]
   end
 end

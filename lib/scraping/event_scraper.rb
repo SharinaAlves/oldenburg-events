@@ -4,32 +4,10 @@ require 'mechanize'
 require 'watir'
 
 class EventScraper
-
   def initialize
     @agent = Mechanize.new
     @browser = Watir::Browser.new
   end
-
-  #def scrape_event_names
-  #  url = "https://de.partybeep.com/Startseite/Oldenburg"
-#
-#    html_file = open(url).read
-#    html_doc = Nokogiri::HTML(html_file)
-#    page = @agent.get(url)
-
-#    html_doc.search('.ll-ename a').each do |element|
-#      if Event.where(name: element.text.strip) == []
-        # Event.create(name: element.text.strip, category_id: 2)
-        #byebug
-#        link = page.link_with(text: element.text.strip)
-#        clicked_page = link.click
-#        Event.create(
-#          category_id: 2,
-#          time: clicked_page.at('.ev-time').text.strip,
-#          name: clicked_page.search('#ev-name').text.strip)
-#      end
-#    end
-#  end
 
   def scrape_partys
     all_clubs_url = "https://de.partybeep.com/Clubs/Oldenburg"
