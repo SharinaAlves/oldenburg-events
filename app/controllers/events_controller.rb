@@ -13,9 +13,9 @@ class EventsController < ApplicationController
   def show
   end
 
-  def scrape
-    ScrapeJob.set(wait_until: Date.tomorrow.noon).perform_later
-  end
+  #def scrape
+  #  ScrapeJob.set(wait_until: Date.tomorrow.noon).perform_later
+  #end
 
   private
 
