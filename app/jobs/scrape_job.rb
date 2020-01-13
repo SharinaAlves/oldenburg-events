@@ -1,5 +1,6 @@
 class ScrapeJob < ApplicationJob
   queue_as :default
+  require 'scraping/event_scraper'
 
   def perform
     # Nachtleben
