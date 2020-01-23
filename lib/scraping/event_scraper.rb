@@ -60,7 +60,7 @@ class EventScraper
       event_link_mod = "https://www.facebook.com#{event_link.href}"
 
       @browser.goto(event_link_mod)
-      @browser.div(:class, '_4dpf').wait_until_present
+      @browser.div(:class, '_63ew').wait_until_present
       html_file_event = @browser.html
       html_doc_event = Nokogiri::HTML(html_file_event)
 

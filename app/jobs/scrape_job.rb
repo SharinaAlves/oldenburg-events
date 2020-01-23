@@ -1,13 +1,18 @@
+require_relative '../../lib/scraping/event_scraper'
+
 class ScrapeJob < ApplicationJob
   queue_as :default
-  require 'scraping/event_scraper'
 
   def perform
+    at_exit do
+      puts "Exiting" if $!
+    end
     # Nachtleben
-    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal") # Loft
-    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/amadeus.oldenburg/events/?ref=page_internal") # Amadeus
-    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/Gesellig.Oldenburg/events/?ref=page_internal") # Gesellig
+    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal") # Loft
+    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/amadeus.oldenburg/events/?ref=page_internal") # Amadeus
+    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/Gesellig.Oldenburg/events/?ref=page_internal") # Gesellig
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/CubesOldenburg/events/?ref=page_internal") # Cubes
+    rescue => error
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/studiob.oldenburg/events/?ref=page_internal") # Studio B
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/PolyesterKlub/events/?ref=page_internal") # Polyester
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/metrooldenburg/events/?ref=page_internal") # Metro
