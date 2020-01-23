@@ -4,13 +4,10 @@ class ScrapeJob < ApplicationJob
   queue_as :default
 
   def perform
-    at_exit do
-      puts "Exiting" if $!
-    end
     # Nachtleben
-    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal") # Loft
-    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/amadeus.oldenburg/events/?ref=page_internal") # Amadeus
-    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/Gesellig.Oldenburg/events/?ref=page_internal") # Gesellig
+    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal") # Loft
+    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/amadeus.oldenburg/events/?ref=page_internal") # Amadeus
+    EventScraper.new.scrape_facebook("https://www.facebook.com/pg/Gesellig.Oldenburg/events/?ref=page_internal") # Gesellig
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/CubesOldenburg/events/?ref=page_internal") # Cubes
     rescue => error
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/studiob.oldenburg/events/?ref=page_internal") # Studio B
