@@ -74,7 +74,8 @@ class EventScraper
             address: html_doc_event.search('._xkh div._5xhp')[1].text.strip,
             location: html_doc_event.search('._b9- a').text.strip,
             description: html_doc_event.search('._63eu').text.strip,
-            image: html_doc_event.search('._3ojl img').attr('src').value
+            image: html_doc_event.search('._3ojl img').attr('src').value,
+            ticket: html_doc_event.seach('._2ib4 a').attr('href').value
           )
         end
     end
