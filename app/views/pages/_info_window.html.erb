@@ -1,0 +1,8 @@
+<%= link_to event_path(event) do  %>
+  <div>
+    <%= image_tag event.image, height: 100, width: 200, crop: :fill, alt: "event_image" %>
+    <br>
+    <strong><%= event.name %></strong>
+  </div>
+  <p><%= event.location %></p>
+<% end %>
