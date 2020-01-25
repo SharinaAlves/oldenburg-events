@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   #root to: 'categories#index'
   resources :events, controller: :events, only: [:index, :show]
   resources :categories, controller: :categories, only: :index
+  resources :users, conroller: :users, only: :show
 end
