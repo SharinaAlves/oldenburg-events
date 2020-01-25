@@ -1,16 +1,19 @@
-.navbar-lewagon {
+.navbar {
   position: fixed;
   top: 0;
   width: 100%;
   height: 40px;
-  justify-content: space-between;
+  //justify-content: space-between;
+  display: grid;
+  grid-template-column: 1fr 1fr 1fr;
+  grid-auto-flow: column;
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar .navbar-brand img {
   width: 40px;
 }
