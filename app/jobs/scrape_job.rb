@@ -4,7 +4,7 @@ class ScrapeJob < ApplicationJob
   queue_as :default
 
   def perform
-    # Nachtleben
+    puts "Nachtleben"
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/LoftOldenburg/events/?ref=page_internal") # Loft
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/amadeus.oldenburg/events/?ref=page_internal") # Amadeus
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/Gesellig.Oldenburg/events/?ref=page_internal") # Gesellig
@@ -16,6 +16,9 @@ class ScrapeJob < ApplicationJob
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/betweenthesheets.oldenburg/events/?ref=page_internal") # Between the Sheets
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/molkereiklub/events/?ref=page_internal") # Molkerei Klub
     EventScraper.new.scrape_facebook("https://www.facebook.com/pg/umBAUbar/events/?ref=page_internal") # Umbaubar
+
+    puts "Delete old ones"
+    Event.where("date < ?", Date.today).delete_all
 
     puts "Done!"
   end
