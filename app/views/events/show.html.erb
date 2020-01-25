@@ -31,8 +31,10 @@
       <%= link_to "whatsapp://send?text=#{request.original_url}", target: :_blank do %>
         <i class="fas fa-paper-plane"></i>
       <% end %>
-      <%= link_to if @event.ticket %>
-        <button>Ticket</button>
+      <% if @event.ticket %>
+        <%= link_to "#" do %>
+          <button>Ticket</button>
+        <% end %>
       <% end %>
     <% end %>
   </div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users
   require "sidekiq/web"
   authenticate :user, lambda { |u| u.admin } do
