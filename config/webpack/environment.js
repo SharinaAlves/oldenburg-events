@@ -10,5 +10,6 @@ environment.plugins.prepend('Provide',
     Popper: ['popper.js', 'default']
   })
 )
+environment.loaders.delete('nodeModules') // needed it to get rid of _typeOf Error -> Babel
 
 module.exports = environment

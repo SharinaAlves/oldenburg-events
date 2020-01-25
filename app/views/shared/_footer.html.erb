@@ -10,23 +10,29 @@
     <% end %>
   </div>
   <div class="footer-element">
-    <%= link_to "#", class: "footer-link" do %>
+    <%= link_to pages_map_path, class: "footer-link" do %>
       <i class="fas fa-map-marker-alt"></i>
     <% end %>
   </div>
   <div class="footer-element">
-    <%= link_to "#", class: "footer-link" do %>
-      <i class="fas fa-bookmark"></i>
+    <% if user_signed_in? %>
+      <%= link_to "#", class: "footer-link" do %>
+        <i class="fas fa-bookmark"></i>
+      <% end %>
+    <% else %>
+      <%= link_to new_user_session_path do %>
+        <i class="fas fa-bookmark"></i>
+      <% end %>
     <% end %>
   </div>
   <div class="footer-element">
     <% if user_signed_in? %>
-      <%= link_to user_path(@user), class: "footer-link" do %>
-              <i class="fas fa-user"></i>
+      <%= link_to user_path(current_user), class: "footer-link" do %>
+        <i class="fas fa-user"></i>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path do %>
-              <i class="fas fa-user"></i>
+        <i class="fas fa-user"></i>
       <% end %>
     <% end %>
   </div>

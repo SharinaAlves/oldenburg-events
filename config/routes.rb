@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   get 'pages/home'
+  get 'pages/map'
   root to: 'pages#home'
   #root to: 'categories#index'
   resources :events, controller: :events, only: [:index, :show]
