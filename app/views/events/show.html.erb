@@ -28,6 +28,9 @@
       <%= link_to "http://maps.apple.com/?q=#{@event.address}", target: :_blank do %>
           <i class="fas fa-map-marked-alt"></i>
       <% end %>
+      <%= link_to "whatsapp://send?text=#{request.original_url}", target: :_blank do %>
+        <i class="fas fa-paper-plane"></i>
+      <% end %>
     <% end %>
   </div>
 </div>
