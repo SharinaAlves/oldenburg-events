@@ -11,8 +11,13 @@
       <% start_date += 1 until start_date == event.date %>
       <h4><%= l(start_date, format: '%A, %d.%m.%Y') %></h4>
     <% end %>
-    <%= render partial: 'events/event_card', locals: { event: event } %>
+        <div class="swiper-slide">
+        <%= render partial: 'events/event_card', locals: { event: event } %>
+        </div>
+
   <% end %>
+  </div>
+  </div>
 </div>
 
     <%# elsif event.date > (start_date + 7) && event.date > (Date.today + 1) %>

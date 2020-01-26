@@ -67,7 +67,7 @@ class EventScraper
         if Event.where(name: html_doc_event.search('#seo_h1_tag').text.strip)
           .where(date: html_doc_event.search('._2ycp').attr('content').value) == []
           Event.create(
-            category_id: 2,
+            category_id: 17,
             name: html_doc_event.search('#seo_h1_tag').text.strip,
             date: html_doc_event.search('._2ycp').attr('content').value,
             time: html_doc_event.search('._2ycp').attr('content').value,

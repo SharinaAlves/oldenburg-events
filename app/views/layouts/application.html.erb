@@ -12,12 +12,13 @@
   </head>
 
   <body>
-    <%#= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
     <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js" %>
+    <%= javascript_include_tag "https://unpkg.com/swiper/js/swiper.js" %>
+    <%= javascript_include_tag "https://unpkg.com/swiper/js/swiper.min.js" %>
     <%= javascript_pack_tag "application" %>    <!-- from app/javascript/packs/application.js -->
   </body>
 </html>

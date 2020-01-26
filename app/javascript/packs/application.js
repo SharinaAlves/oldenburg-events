@@ -3,6 +3,8 @@ import 'mapbox-gl/dist/mapbox-gl.css'; // <-- you need to uncomment the styleshe
 
 import { getUserLocation } from '../components/get_user_location';
 import { initMapbox } from '../components/init_mapbox';
+import { swiper } from '../components/swiper';
 
 getUserLocation();
 initMapbox();
+swiper();
