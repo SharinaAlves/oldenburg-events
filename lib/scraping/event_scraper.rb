@@ -6,7 +6,13 @@ require 'watir'
 class EventScraper
   def initialize
     @agent = Mechanize.new
-    @browser = Watir::Browser.new
+    args = %w[--disable-infobars --headless window-size=1600,1200 --no-sandbox --disable-gpu]
+    options = {
+      binary: ENV['GOOGLE_CHROME_BIN'],
+      prefs: { password_manager_enable: false, credentials_enable_service: false },
+      args:  args
+     }
+    @browser = Watir::Browser.new(:chrome, options: options)
   end
 
   def scrape_partys
