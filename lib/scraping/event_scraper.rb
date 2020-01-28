@@ -6,13 +6,7 @@ require 'watir'
 class EventScraper
   def initialize
     @agent = Mechanize.new
-    args = %w[--disable-infobars --headless window-size=1600,1200 --no-sandbox --disable-gpu]
-    options = {
-      binary: ENV['GOOGLE_CHROME_BIN'],
-      prefs: { password_manager_enable: false, credentials_enable_service: false },
-      args:  args
-     }
-    @browser = Watir::Browser.new(:chrome, options: options)
+    @browser = Watir::Browser.new
   end
 
   def scrape_partys
@@ -81,7 +75,7 @@ class EventScraper
             location: html_doc_event.search('._b9- a').text.strip,
             description: html_doc_event.search('._63eu').text.strip,
             image: html_doc_event.search('._3ojl img').attr('src').value,
-            ticket: html_doc_event.seach('._2ib4 a').attr('href').value
+            ticket: html_doc_event.search('._2ib4 a').attr('href').value
           )
         end
     end
