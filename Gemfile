@@ -47,6 +47,9 @@ gem 'geocoder'
 gem 'watir', '~> 6.0'
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+#gem 'headless', '~> 2.2', '>= 2.2.3'
+gem 'chromedriver-helper'
+gem 'thor'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
