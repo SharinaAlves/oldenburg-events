@@ -7,8 +7,10 @@ require "chromedriver-helper"
 class EventScraper
   def initialize
     @agent = Mechanize.new
-    #@browser = Watir::Browser.new :chrome, headless: true
-    @browser = new_browser
+    Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
+    Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
+    @browser = Watir::Browser.new :chrome #, headless: true
+    #@browser = new_browser
   end
 
   def scrape_partys
