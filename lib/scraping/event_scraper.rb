@@ -11,6 +11,8 @@ class EventScraper
     Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
     @browser = Watir::Browser.new :chrome #, headless: true
     #@browser = new_browser
+    # Kill browser!
+    # Drop db
   end
 
   def scrape_partys
@@ -34,7 +36,7 @@ class EventScraper
 
         if Event.where(name: element.text.strip) == []
           Event.create(
-            category_id: 2,
+            category_id: 17,
             name: event_page.at('#ev-name').text.strip,
             date: event_page.at('.ev-day').text.strip,
             time: event_page.at('.ev-time').text.strip,
@@ -45,6 +47,7 @@ class EventScraper
           )
         end
       end
+      @browser.close
     end
   end
 
