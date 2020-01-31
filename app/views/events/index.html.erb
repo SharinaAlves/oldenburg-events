@@ -12,7 +12,60 @@
   <% if params[:format] != "1" %>
     <% @events = @events.where(category_id: params[:format]) %>
   <% end %>
-  <% @events.each do |event| %>
-    <%= render partial: 'events/event_card', locals: { event: event } %>
+  <%# @events.sort(:date).each do |event| %>
+    <%#= render partial: 'events/event_card', locals: { event: event } %>
+  <%# end %>
+
+
+  <% if @events.where(date: Date.today) != [] %>
+    <h4>Heute</h4>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% @events.where(date: Date.today).order(:date).each do |event| %>
+          <div class="swiper-slide">
+            <%= render partial: 'events/event_card', locals: { event: event } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @events.where(date: (Date.today + 1))  != [] %>
+    <h4>Morgen</h4>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% @events.where(date: (Date.today + 1)).order(:date).each do |event| %>
+          <div class="swiper-slide">
+            <%= render partial: 'events/event_card', locals: { event: event } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @events.where("date > ?", Date.today + 1) != [] %>
+    <% end_date = Date.today + 1 %>
+    <% div_open = false %>
+
+    <% @events.where("date > ?", Date.today + 1).order(:date).each do |event| %>
+      <% if event.date > end_date %>
+        <% end_date += 8 until ((end_date - 7)..(end_date)).include? event.date %>
+        <% if div_open %>
+          </div>
+          </div>
+        <% end %>
+        <h4><%= (end_date - 7).strftime('%d.%m.%Y') + " - " + end_date.strftime('%d.%m.%Y') %></h4>
+        <div class="swiper-container">
+        <div class="swiper-wrapper">
+        <% div_open = true %>
+      <% end %>
+        <div class="swiper-slide">
+          <%= render partial: 'events/event_card', locals: { event: event } %>
+        </div>
+      <% if @events.where("date > ?",(Date.today + 1)).order(:date).last == event %>
+        </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
