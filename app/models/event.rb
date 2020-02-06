@@ -3,5 +3,6 @@ class Event < ApplicationRecord
   has_many :bookmarks
 
   geocoded_by :address
+  searchkick
   after_validation :geocode, if: :will_save_change_to_address?
 end

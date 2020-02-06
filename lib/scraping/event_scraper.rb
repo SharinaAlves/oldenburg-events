@@ -2,7 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 require 'mechanize'
 require 'watir'
-require "chromedriver-helper"
+#require "chromedriver-helper"
 
 class EventScraper
   def initialize

@@ -2,25 +2,25 @@
   <%= link_to categories_path, class: "navbar-brand" do %>
     <i class="fas fa-chevron-left"></i>
   <% end %>
-  <div><h3><%= Category.find(params[:format]).name %></h3></div>
+  <div><h3><%= @category.name %></h3></div>
   <div></div>
 </div>
 
 <div class="index-container">
   <h5 id="location"></h5>
 
-  <% if params[:format] != "1" %>
-    <% @events = @events.where(category_id: params[:format]) %>
+  <% if @category.id != "1" %>
+    <% @events = @events.where(category: @category) %>
   <% end %>
   <% if params[:query] %>
-    <% @events = Event.search(params[:query]).where(category: @category) %>
+    <% @events = Event.where(category: @category).search(params[:query]) %>
   <% end %>
   <%# @events.sort(:date).each do |event| %>
     <%#= render partial: 'events/event_card', locals: { event: event } %>
   <%# end %>
 
   <div>
-    <%= form_tag events_path, method: :get, class: "search-bar" do %>
+    <%= form_tag category_path, method: :get, class: "search-bar" do %>
       <%= text_field_tag :query,
       params[:query],
       class: "input-field"

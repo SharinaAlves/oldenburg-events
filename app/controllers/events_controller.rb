@@ -5,17 +5,14 @@ class EventsController < ApplicationController
 
   def index
     save_user_location
+    Event.reindex
     @events = policy_scope(Event)
-    #EventScraper.new.scrape_facebook("https://www.facebook.com/pg/molkereiklub/events/?ref=page_internal")
-    @events.each { |event| get_distance(event) if event.latitude != nil }
+    #@events = Event.search(params[:query]) if params[:query]
+    #@events.each { |event| get_distance(event) if event.latitude != nil }
   end
 
   def show
   end
-
-  #def scrape
-  #  ScrapeJob.set(wait_until: Date.tomorrow.noon).perform_later
-  #end
 
   private
 
