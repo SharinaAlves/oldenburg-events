@@ -19,7 +19,7 @@
   </div>
 
   <% @categories.each do |category| %>
-    <%= link_to events_path(category) do %>
+    <%= link_to category_path do %>
     <% if category.image != nil %>
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= asset_path category.image %>)">
         <%= category.name %>
