@@ -1,13 +1,20 @@
 <div class="navbar">
   <%= link_to :back, class: "navbar-brand" do %>
-    <i class="fas fa-chevron-left"></i>
+    <div class="back"><i class="fas fa-chevron-left"></i></div>
   <% end %>
   <div><h3><%#= @event.name %></h3></div>
   <div></div>
 </div>
 
 <div class="event">
-  <%= image_tag(@event.image) if @event.image != nil %>
+  <div class="event-img">
+    <div class="bookmark">
+        <i class="far fa-bookmark"></i>
+      <!-- if gemerkt
+      <i class="fas fa-bookmark"></i> -->
+    </div>
+    <%= image_tag(@event.image) if @event.image != nil %>
+  </div>
   <div class="show-container">
     <h1><%= @event.name %></h1>
     <%= @event.location %>

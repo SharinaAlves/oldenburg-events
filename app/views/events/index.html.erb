@@ -1,6 +1,6 @@
 <div class="navbar">
   <%= link_to categories_path, class: "navbar-brand" do %>
-    <i class="fas fa-chevron-left"></i>
+    <div class="back"><i class="fas fa-chevron-left"></i></div>
   <% end %>
   <div><h3><%= Category.find(params[:format]).name %></h3></div>
   <div></div>

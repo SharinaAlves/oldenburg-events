@@ -1,6 +1,11 @@
 <%= link_to event_path(event), class: 'event-card' do %>
   <div class="card-event">
     <div class="card-img">
+      <div class="bookmark">
+        <i class="far fa-bookmark"></i>
+      <!-- if gemerkt
+      <i class="fas fa-bookmark"></i> -->
+      </div>
       <%= image_tag(event.image) if event.image %>
     </div>
     <div class="card-info">

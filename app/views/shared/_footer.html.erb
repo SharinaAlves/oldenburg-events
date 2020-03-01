@@ -2,26 +2,31 @@
   <div class="footer-element">
     <%= link_to pages_home_path, class: "footer-link" do %>
       <i class="fas fa-home"></i>
+      <div class="footer-text">HOME</div>
     <% end %>
   </div>
   <div class="footer-element">
     <%= link_to categories_path, class: "footer-link" do %>
       <i class="fas fa-calendar-alt"></i>
+      <div class="footer-text">KATEGORIEN</div>
     <% end %>
   </div>
   <div class="footer-element">
     <%= link_to pages_map_path, class: "footer-link" do %>
       <i class="fas fa-map-marker-alt"></i>
+      <div class="footer-text">KARTE</div>
     <% end %>
   </div>
   <div class="footer-element">
     <% if user_signed_in? %>
       <%= link_to "#", class: "footer-link" do %>
         <i class="fas fa-bookmark"></i>
+        <div class="footer-text">MERKLISTE</div>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path, class: "footer-link" do %>
         <i class="fas fa-bookmark"></i>
+        <div class="footer-text">MERKLISTE</div>
       <% end %>
     <% end %>
   </div>
@@ -29,10 +34,12 @@
     <% if user_signed_in? %>
       <%= link_to user_path(current_user), class: "footer-link" do %>
         <i class="fas fa-user"></i>
+        <div class="footer-text">PROFIL</div>
       <% end %>
     <% else %>
       <%= link_to new_user_session_path, class: "footer-link" do %>
         <i class="fas fa-user"></i>
+        <div class="footer-text">PROFIL</div>
       <% end %>
     <% end %>
   </div>
