@@ -7,12 +7,11 @@ require 'watir'
 class EventScraper
   def initialize
     @agent = Mechanize.new
-    Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
-    Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
-    @browser = Watir::Browser.new :chrome #, headless: true
-    #@browser = new_browser
-    # Kill browser!
-    # Drop db
+    #Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
+    #Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
+    #@browser = Watir::Browser.new :chrome #, headless: true
+    @browser = new_browser
+    # Change for heroku
   end
 
   def scrape_partys
@@ -51,7 +50,7 @@ class EventScraper
     end
   end
 
-  def scrape_facebook(club_url)
+  def scrape_facebook(club_url, club_name)
     @browser.goto(club_url)
     @browser.div(:class, '_4dmk').wait_until_present
     @browser.execute_script("
@@ -73,22 +72,27 @@ class EventScraper
 
         if Event.where(name: html_doc_event.search('#seo_h1_tag').text.strip)
           .where(date: html_doc_event.search('._2ycp').attr('content').value) == []
-          Event.create(
-            category_id: 17,
+          event = Event.create(
+            category_id: 1, #17
             name: html_doc_event.search('#seo_h1_tag').text.strip,
             date: html_doc_event.search('._2ycp').attr('content').value,
             time: html_doc_event.search('._2ycp').attr('content').value,
             address: html_doc_event.search('._xkh div._5xhp')[1].text.strip,
-            location: html_doc_event.search('._b9- a').text.strip,
+            location: club_name,
+            #html_doc_event.search('._b9- a').text.strip,
             description: html_doc_event.search('._63eu').text.strip,
             image: html_doc_event.search('._3ojl img').attr('src').value
-            #ticket: html_doc_event.search('._2ib4 a').attr('href').value
           )
+          if html_doc_event.search('._2ib4 a').attr('href')
+            event.ticket = html_doc_event.search('._2ib4 a').attr('href').value
+            event.save
+          end
         end
     end
+    @browser.close
   end
 
-   private
+  private
 
   def new_browser(downloads: false)
     options = Selenium::WebDriver::Chrome::Options.new
