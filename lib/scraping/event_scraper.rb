@@ -7,10 +7,10 @@ require 'watir'
 class EventScraper
   def initialize
     @agent = Mechanize.new
-    #Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
-    #Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
-    #@browser = Watir::Browser.new :chrome #, headless: true
-    @browser = new_browser
+    Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
+    Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
+    @browser = Watir::Browser.new :chrome #, headless: true
+    #@browser = new_browser
     # Change for heroku!!
   end
 
