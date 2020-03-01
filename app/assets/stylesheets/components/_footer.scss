@@ -8,11 +8,14 @@
   background: white;
   flex-grow: 0;
   .active {
-    background-color: lightgrey;
+    background-color: #4FC1C1;
+    .fas {
+      color: white;
+    }
   }
   .fas {
   font-size: 2em;
-  color: white;
+  color: #4FC1C1;
   }
 }
 
@@ -20,7 +23,12 @@
   display: flex;
   align-items: center;
   text-align: center;
-  background-color: grey;
+  flex-direction: column;
+  background-color: #262D37;
+}
+
+.footer-text {
+  color: white;
 }
 
 .footer-link {
