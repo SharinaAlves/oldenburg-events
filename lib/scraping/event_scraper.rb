@@ -7,11 +7,11 @@ require 'watir'
 class EventScraper
   def initialize
     @agent = Mechanize.new
-    #Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
-    #Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
-    #@browser = Watir::Browser.new :chrome #, headless: true
-    @browser = new_browser
-    # Change for heroku
+    Selenium::WebDriver::Chrome.path = "/app/.apt/usr/bin/google-chrome"
+    Selenium::WebDriver::Chrome.driver_path = "/app/.chromedriver/bin/chromedriver"
+    @browser = Watir::Browser.new :chrome #, headless: true
+    #@browser = new_browser
+    # Change for heroku!!
   end
 
   def scrape_partys
@@ -73,7 +73,7 @@ class EventScraper
         if Event.where(name: html_doc_event.search('#seo_h1_tag').text.strip)
           .where(date: html_doc_event.search('._2ycp').attr('content').value) == []
           event = Event.create(
-            category_id: 1, #17
+            category_id: 17, #17 heroku 1 localhost
             name: html_doc_event.search('#seo_h1_tag').text.strip,
             date: html_doc_event.search('._2ycp').attr('content').value,
             time: html_doc_event.search('._2ycp').attr('content').value,
