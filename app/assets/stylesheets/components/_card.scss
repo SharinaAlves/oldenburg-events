@@ -29,10 +29,12 @@ a {
   padding: 5px 5px;
   height: 40vh;
   width: 100%;
+  background-color: white;
   border-radius: 3px;
-  border: 1px solid black;
-  padding-bottom: 5px;
-  margin-bottom: 5px;
+  box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+  //border: 1px solid black;
+  margin-bottom: 30px;
+  position: relative;
   .card-info {
     width: 100%;
   }
@@ -43,14 +45,16 @@ a {
       height: 150px;
       border-radius: 3px;
     }
-    position: relative;
   }
   .bookmark {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 10px;
+    right: 20px;
     color: #4FC1C1;
     font-size: 2em;
+    i {
+      padding-left: 10px;
+    }
   }
 }
 
