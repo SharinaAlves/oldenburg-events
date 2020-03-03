@@ -15,6 +15,7 @@
   <% if params[:query] %>
     <% @events = Event.search(params[:query]).where(category: @category) %>
   <% end %>
+
   <%# @events.sort(:date).each do |event| %>
     <%#= render partial: 'events/event_card', locals: { event: event } %>
   <%# end %>
