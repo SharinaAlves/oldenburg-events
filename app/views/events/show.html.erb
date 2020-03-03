@@ -28,11 +28,18 @@
       <%= link_to "http://maps.apple.com/?q=#{@event.address}", target: :_blank do %>
           <i class="fas fa-map-marked-alt"></i>
       <% end %>
-      <%= link_to "whatsapp://send?text=#{request.original_url}", target: :_blank do %>
-        <i class="fas fa-paper-plane"></i>
-      <% end %>
+      <button type="button" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-paper-plane"></i></button>
+      <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <%= social_share_button_tag("My App", :allow_sites => %w(whatsapp_app facebook)) %>
+          </div>
+        </div>
+      </div>
+
+
       <% if @event.ticket %>
-        <%= link_to "#" do %>
+        <%= link_to @event.ticket do %>
           <button>Ticket</button>
         <% end %>
       <% end %>

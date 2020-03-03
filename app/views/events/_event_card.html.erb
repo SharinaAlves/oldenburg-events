@@ -9,7 +9,8 @@
       <%= event.location if event.location %><br>
       <%= event.date.strftime('%d.%m.%Y') if event.date %> <i class="far fa-clock"></i> <%= event.time.strftime('%H:%M') if event.time %>
       <div class="bookmark">
-        <i class="fas fa-share-alt"></i>
+        <%#= social_share_button_tag("My App", :allow_sites => %w(whatsapp_app)) %>
+        <i class="fas fa-paper-plane"></i>
         <i class="far fa-bookmark"></i>
       <!-- if gemerkt
       <i class="fas fa-bookmark"></i> -->
