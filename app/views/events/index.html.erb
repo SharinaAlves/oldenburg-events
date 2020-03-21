@@ -22,7 +22,6 @@
     <% @events = Event.search(params[:query])#.where(category: @category) %>
   <% else %>
     <% @events = Event.all %>
-    <%# params[:query] = "" %>
   <% end %>
 
   <%# @events.sort(:date).each do |event| %>

@@ -9,16 +9,6 @@
 <div class="index-container">
   <h5 id="location"></h5>
 
-  <% if @category.id != "1" %>
-    <% @events = @events.where(category: @category) %>
-  <% end %>
-  <% if params[:query] %>
-    <% @events = Event.where(category: @category).search(params[:query]) %>
-  <% end %>
-  <%# @events.sort(:date).each do |event| %>
-    <%#= render partial: 'events/event_card', locals: { event: event } %>
-  <%# end %>
-
   <div>
     <%= form_tag category_path, method: :get, class: "search-bar" do %>
       <%= text_field_tag :query,
@@ -32,8 +22,6 @@
       <% end %>
     <% end %>
   </div>
-
-  <%= params %>
 
   <% @events.each do |event| %>
     <%= render partial: 'events/event_card', locals: { event: event } %>

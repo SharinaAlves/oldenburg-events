@@ -6,8 +6,8 @@ flatpickr(".datepicker", {
   dateFormat: "d.m.Y",
   minDate: "today",
   mode: "range",
-  onChange: function(selectedDates) {
-    let from = selectedDates[0];
-    let to = selectedDates[1];
-  };
+  //onChange: function(selectedDates) {
+  //  let from = selectedDates[0];
+  //  let to = selectedDates[1];
+  //};
 });
