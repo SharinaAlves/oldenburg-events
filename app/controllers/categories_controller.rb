@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :set_category, only: [:index, :show]
+  before_action :set_category, only: [:show]
 
   def index
     @categories = policy_scope(Category)
@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
     @events = Event.where(category: @category)
   end
 
-  #private
+  private
 
   def set_category
     @category = Category.find(params[:id])
