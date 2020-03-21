@@ -7,6 +7,7 @@
   grid-template-column: repeat(5, 1fr);
   background: white;
   flex-grow: 0;
+  z-index: 9999;
   .active {
     background-color: #4FC1C1;
     .fas {
