@@ -28,6 +28,24 @@
       <%= link_to "http://maps.apple.com/?q=#{@event.address}", target: :_blank do %>
           <i class="fas fa-map-marked-alt"></i>
       <% end %>
+
+      <% if current_user %>
+        <% if @bookmarks.where(event: @event.id) != [] %>
+          <% @bookmark_id = @bookmarks.where(event: @event.id).first.id %>
+          <%= link_to bookmark_path(@bookmark_id), method: :delete do %>
+            <i class="fas fa-bookmark"></i>
+          <% end %>
+        <% else %>
+          <%= link_to bookmarks_path(@event), method: :post do %>
+            <i class="far fa-bookmark"></i>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <i class="far fa-bookmark"></i>
+        <% end %>
+      <% end %>
+
       <button type="button" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-paper-plane"></i></button>
       <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">

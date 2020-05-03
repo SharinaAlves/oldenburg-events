@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :category
-  has_many :bookmarks
+  has_many :bookmarks, through: :bookmark_events
 
   geocoded_by :address
   searchkick

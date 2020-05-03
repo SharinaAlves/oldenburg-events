@@ -9,9 +9,11 @@ class EventsController < ApplicationController
     @events = policy_scope(Event)
     #@events = Event.search(params[:query]) if params[:query]
     #@events.each { |event| get_distance(event) if event.latitude != nil }
+    set_bookmarks
   end
 
   def show
+    set_bookmarks
   end
 
   private
@@ -34,5 +36,11 @@ class EventsController < ApplicationController
     http_call = open(url).read
     response = JSON.parse(http_call, {symbolize_name: true})
     @distance = response["routes"][0]["legs"][0]["distance"]["text"]
+  end
+
+  def set_bookmarks
+    @bookmarks = policy_scope(Bookmark)
+    @bookmarks = @bookmarks.where(user: current_user)
+    #authorize @bookmark
   end
 end
