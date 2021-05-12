@@ -9,7 +9,7 @@
     "jquery": "^3.5.0",
     "mapbox-gl": "^1.6.1",
     "popper.js": "^1.16.0",
-    "swiper": "^5.3.0"
+    "swiper": "^6.5.1"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.9.0"
